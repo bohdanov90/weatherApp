@@ -1,23 +1,53 @@
 <div class="d-flex flex-column bg-light">
-  <form [formGroup]='loginForm'>
+  <form [formGroup]='loginForm' (ngSubmit)='submitForm()'>
     <div class="form-group d-flex flex-column mt-3">
       <label class="ml-5" for="login">Login:</label>
       <input
+        id="login"
         type="text"
         formControlName='login'
         class='formControl w-25 ml-5'
-        placeholder="Login">
+        placeholder="Login"
+        required>
+      <div
+        *ngIf="loginForm.controls.login.invalid && (loginForm.controls.login.dirty || loginForm.controls.login.touched)"
+        class="alert alert-danger">
+        <div *ngIf="loginForm.controls.login.errors.required">
+          Login is required
+        </div>
+        <div *ngIf="loginForm.controls.login.errors.minlength">
+          Login must be at least 6 characters long
+        </div>
+        <div *ngIf="loginForm.controls.login.errors.maxlength">
+          Login must be up to 100 characters long
+        </div>
+      </div>
     </div>
     <div class="form-group d-flex flex-column">
       <label class="ml-5" for="password">Password:</label>
       <input
+        id='password'
         type="password"
         formControlName='password'
         class='formControl w-25 ml-5'
-        placeholder="Password">
+        placeholder="Password"
+        required>
+      <div
+      *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
+      class="alert alert-danger">
+        <div *ngIf="loginForm.controls.password.errors.required">
+          Password is required
+        </div>
+        <div *ngIf="loginForm.controls.password.errors.minlength">
+          Password must be at least 6 characters long
+        </div>
+        <div *ngIf="loginForm.controls.password.errors.maxlength">
+          Password must be up to 100 characters long
+        </div>
+      </div>
     </div>
     <div class="form-group d-flex flex-row justify-content-between">
-      <button class="btn btn-primary ml-5">Sign In</button>
+      <button type='submit' class="btn btn-primary ml-5">Sign In</button>
       <button class="btn btn-primary mr-5">Sign Up</button>
     </div>
   </form>
