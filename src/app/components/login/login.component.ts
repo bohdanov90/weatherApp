@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { validateInput } from '../../validators/credsValidator';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,13 @@ export class LoginComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(100),
+        validateInput(/[^a-zA-Z0-9]/gi),
       ]],
       password: ['', [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(100),
+        validateInput(/[^a-zA-Z0-9_]/gi),
       ]],
     });
   }

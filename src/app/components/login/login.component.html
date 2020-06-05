@@ -1,14 +1,17 @@
 <div class="d-flex flex-column bg-light">
   <form [formGroup]='loginForm' (ngSubmit)='submitForm()'>
-    <div class="form-group d-flex flex-column mt-3">
-      <label class="ml-5" for="login">Login:</label>
+    <div class="form-group d-flex flex-column mt-3 ml-5">
+      <label for="login">Login:</label>
       <input
         id="login"
         type="text"
         formControlName='login'
-        class='formControl w-25 ml-5'
+        class='formControl w-25'
         placeholder="Login"
         required>
+      <div>
+        <small class="text-muted">Only letters and digits are allowed</small>
+      </div>
       <div
         *ngIf="loginForm.controls.login.invalid && (loginForm.controls.login.dirty || loginForm.controls.login.touched)"
         class="alert alert-danger">
@@ -21,17 +24,23 @@
         <div *ngIf="loginForm.controls.login.errors.maxlength">
           Login must be up to 100 characters long
         </div>
+        <div *ngIf="loginForm.controls.login.errors.credsValidator">
+          Please use only letters and digits
+        </div>
       </div>
     </div>
-    <div class="form-group d-flex flex-column">
-      <label class="ml-5" for="password">Password:</label>
+    <div class="form-group d-flex flex-column mt-3 ml-5">
+      <label for="password">Password:</label>
       <input
         id='password'
         type="password"
         formControlName='password'
-        class='formControl w-25 ml-5'
+        class='formControl w-25'
         placeholder="Password"
         required>
+      <div>
+        <small class="text-muted">Only letters, digits, and underscores are allowed</small>
+      </div>
       <div
       *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
       class="alert alert-danger">
@@ -43,6 +52,9 @@
         </div>
         <div *ngIf="loginForm.controls.password.errors.maxlength">
           Password must be up to 100 characters long
+        </div>
+        <div *ngIf="loginForm.controls.password.errors.credsValidator">
+          Please use only letters, digits and underscores
         </div>
       </div>
     </div>
