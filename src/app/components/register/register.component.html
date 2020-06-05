@@ -1,15 +1,15 @@
-<div class="d-flex flex-column bg-light">
-  <form [formGroup]="registerForm" (ngSubmit)='submitForm()'>
+<div class="d-flex flex-column justify-content-center bg-light">
+  <form [formGroup]="registerForm" (ngSubmit)='submitForm()' class="w-50 align-self-center">
 
     <h5 class="d-flex justify-content-center mt-3 ml-4 mr-4">Please Sign Up</h5>
 
-    <div class="form-group d-flex flex-column mt-3">
-      <label class="ml-5" for="name">Name:</label>
+    <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
+      <label for="name">Name:</label>
       <input
         id='name'
         type="text"
         formControlName='name'
-        class='formControl w-25 ml-5'
+        class='formControl w-50'
         placeholder="Name"
         required>
       <div>
@@ -33,13 +33,13 @@
       </div>
     </div>
 
-    <div class="form-group d-flex flex-column mt-3">
-      <label class="ml-5" for="email">E-mail:</label>
+    <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
+      <label for="email">E-mail:</label>
       <input
         id='email'
         type="text"
         formControlName='email'
-        class='formControl w-25 ml-5'
+        class='formControl w-50'
         placeholder="E-mail"
         required>
       <div
@@ -54,13 +54,13 @@
       </div>
     </div>
 
-    <div class="form-group d-flex flex-column mt-3">
-      <label class="ml-5" for="login">Login:</label>
+    <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
+      <label for="login">Login:</label>
       <input
         id='regLogin'
         type="text"
         formControlName='login'
-        class='formControl w-25 ml-5'
+        class='formControl w-50'
         placeholder="Login"
         required>
       <div>
@@ -84,13 +84,13 @@
       </div>
     </div>
 
-    <div class="form-group d-flex flex-column">
-      <label class="ml-5" for="password">Password:</label>
+    <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
+      <label for="password">Password:</label>
       <input
         id='regPassword'
         type="password"
         formControlName='password'
-        class='formControl w-25 ml-5'
+        class='formControl w-50'
         placeholder="Password"
         required>
       <div>
@@ -115,8 +115,8 @@
     </div>
 
     <div class="form-group d-flex flex-row justify-content-between">
-      <button class="btn btn-primary ml-5">Register Account</button>
-      <button class="btn btn-primary mr-5">Return to Login Page</button>
+      <button type="submit" class="btn btn-primary ml-4">Register Account</button>
+      <button type="button" class="btn btn-primary mr-4">Return to Login Page</button>
     </div>
 
   </form>
