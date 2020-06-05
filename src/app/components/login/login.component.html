@@ -2,11 +2,19 @@
   <form [formGroup]='loginForm'>
     <div class="form-group d-flex flex-column mt-3">
       <label class="ml-5" for="login">Login:</label>
-      <input type="text" formControlName='login' class='formControl w-25 ml-5'>
+      <input
+        type="text"
+        formControlName='login'
+        class='formControl w-25 ml-5'
+        placeholder="Login">
     </div>
     <div class="form-group d-flex flex-column">
       <label class="ml-5" for="password">Password:</label>
-      <input type="password" formControlName='password' class='formControl w-25 ml-5'>
+      <input
+        type="password"
+        formControlName='password'
+        class='formControl w-25 ml-5'
+        placeholder="Password">
     </div>
     <div class="form-group d-flex flex-row justify-content-between">
       <button class="btn btn-primary ml-5">Sign In</button>
