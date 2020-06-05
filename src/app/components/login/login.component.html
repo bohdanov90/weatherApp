@@ -1,12 +1,13 @@
-<div class="d-flex flex-column bg-light">
-  <form [formGroup]='loginForm' (ngSubmit)='submitForm()'>
-    <div class="form-group d-flex flex-column mt-3 ml-5">
+<div class="d-flex flex-column justify-content-center bg-light">
+  <form [formGroup]='loginForm' (ngSubmit)='submitForm()' class="w-50 align-self-center">
+    <h5 class="d-flex justify-content-center mt-3 ml-4 mr-4">Please Log In</h5>
+    <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
       <label for="login">Login:</label>
       <input
         id="login"
         type="text"
         formControlName='login'
-        class='formControl w-25'
+        class='formControl w-50'
         placeholder="Login"
         required>
       <div>
@@ -14,7 +15,7 @@
       </div>
       <div
         *ngIf="loginForm.controls.login.invalid && (loginForm.controls.login.dirty || loginForm.controls.login.touched)"
-        class="alert alert-danger">
+        class="alert alert-danger mt-2 mb-1 ml-3 mr-3">
         <div *ngIf="loginForm.controls.login.errors.required">
           Login is required
         </div>
@@ -29,13 +30,13 @@
         </div>
       </div>
     </div>
-    <div class="form-group d-flex flex-column mt-3 ml-5">
+    <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
       <label for="password">Password:</label>
       <input
         id='password'
         type="password"
         formControlName='password'
-        class='formControl w-25'
+        class='formControl w-50'
         placeholder="Password"
         required>
       <div>
@@ -43,7 +44,7 @@
       </div>
       <div
       *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)"
-      class="alert alert-danger">
+      class="alert alert-danger mt-2 mb-1 ml-3 mr-3">
         <div *ngIf="loginForm.controls.password.errors.required">
           Password is required
         </div>
@@ -59,8 +60,8 @@
       </div>
     </div>
     <div class="form-group d-flex flex-row justify-content-between">
-      <button type='submit' class="btn btn-primary ml-5">Sign In</button>
-      <button class="btn btn-primary mr-5">Sign Up</button>
+      <button type='submit' class="btn btn-primary ml-4">Sign In</button>
+      <button type='button' class="btn btn-primary mr-4">Sign Up</button>
     </div>
   </form>
 </div>
