@@ -4,13 +4,12 @@
     <h5 class="d-flex justify-content-center mt-3 ml-4 mr-4">Please Sign Up</h5>
 
     <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
-      <label for="name">Name:</label>
+      <label for="name">Name <small class="text-danger font-weight-bold">*</small></label>
       <input
         id='name'
         type="text"
         formControlName='name'
         class='formControl w-50'
-        placeholder="Name"
         required>
       <div>
         <small class="text-muted">Only letters are allowed</small>
@@ -34,13 +33,12 @@
     </div>
 
     <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
-      <label for="email">E-mail:</label>
+      <label for="email">E-mail <small class="text-danger font-weight-bold">*</small></label>
       <input
         id='email'
         type="text"
         formControlName='email'
         class='formControl w-50'
-        placeholder="E-mail"
         required>
       <div
         *ngIf="registerForm.controls.email.invalid && (registerForm.controls.email.dirty || registerForm.controls.email.touched)"
@@ -55,13 +53,12 @@
     </div>
 
     <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
-      <label for="login">Login:</label>
+      <label for="login">Login <small class="text-danger font-weight-bold">*</small></label>
       <input
         id='regLogin'
         type="text"
         formControlName='login'
         class='formControl w-50'
-        placeholder="Login"
         required>
       <div>
         <small class="text-muted">Only letters and digits are allowed</small>
@@ -85,13 +82,12 @@
     </div>
 
     <div class="form-group d-flex flex-column mt-3 ml-4 mr-4">
-      <label for="password">Password:</label>
+      <label for="password">Password <small class="text-danger font-weight-bold">*</small></label>
       <input
         id='regPassword'
         type="password"
         formControlName='password'
         class='formControl w-50'
-        placeholder="Password"
         required>
       <div>
         <small class="text-muted">Only letters, digits, and underscores are allowed</small>
