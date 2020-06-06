@@ -5,16 +5,20 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  public localStorageName = 'weatherApp';
+  public localStorageName = 'weatherAppUsers';
 
   constructor() {}
 
-  getLocalStorage(): User[] {
-    const value = localStorage.getItem(this.localStorageName);
+  getLocalStorage(localStorageName: string): User[] {
+    const value = localStorage.getItem(localStorageName);
     return !!value ? JSON.parse(value) : [];
   }
 
-  setLocalStorageItem(user: User): void {
-    localStorage.setItem(this.localStorageName, JSON.stringify([...this.getLocalStorage(), user]));
+  setLocalStorageItem(localStorageName: string, user: User): void {
+    localStorage.setItem(localStorageName, JSON.stringify([...this.getLocalStorage(localStorageName), user]));
+  }
+
+  removeLocalStorageItem(localStorageName: string) {
+    localStorage.removeItem(localStorageName);
   }
 }

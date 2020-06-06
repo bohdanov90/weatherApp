@@ -51,12 +51,10 @@ export class RegisterComponent implements OnInit {
     this.userValues = this.registerForm.value;
     this.userValues.id = Date.now();
 
-    console.log(this.localStorageService.getLocalStorage());
-
-    if (this.localStorageService.getLocalStorage().some(el => el.email === this.registerForm.value.email)) {
-      console.log('user exists');
+    if (this.localStorageService.getLocalStorage('weatherAppUsers').some(el => el.email === this.registerForm.value.email)) {
+      console.log(' this user already exists');
     } else {
-      this.localStorageService.setLocalStorageItem(this.userValues);
+      this.localStorageService.setLocalStorageItem('weatherAppUsers', this.userValues);
       this.router.navigate(['/login']);
     }
   }

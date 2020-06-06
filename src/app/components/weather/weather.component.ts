@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NetworkService } from 'src/app/services/network.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-weather',
@@ -20,6 +21,7 @@ export class WeatherComponent implements OnInit {
   constructor(
     private networkService: NetworkService,
     private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {}
@@ -36,6 +38,7 @@ export class WeatherComponent implements OnInit {
 
   onLogOutClick() {
     this.router.navigate(['/login']);
+    this.authService.logOut();
   }
 
 }
