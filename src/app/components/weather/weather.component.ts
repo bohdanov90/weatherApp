@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NetworkService } from 'src/app/services/network.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-weather',
@@ -17,7 +18,8 @@ export class WeatherComponent implements OnInit {
   humidity$: Observable<string>;
 
   constructor(
-    private networkService: NetworkService
+    private networkService: NetworkService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {}
@@ -30,6 +32,10 @@ export class WeatherComponent implements OnInit {
     this.humidity$ = this.networkService.getHumidity(this.currentCity);
     this.currentCity = '';
     this.isDataReceived = true;
+  }
+
+  onLogOutClick() {
+    this.router.navigate(['/login']);
   }
 
 }
