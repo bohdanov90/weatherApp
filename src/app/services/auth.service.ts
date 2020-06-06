@@ -18,4 +18,8 @@ export class AuthService {
   logOut(): void {
     this.localStorageService.removeLocalStorageItem('weatherAppCurrentUser');
   }
+
+  isLoggedIn(): boolean {
+    return this.localStorageService.getLocalStorage('weatherAppCurrentUser').length > 0 ? true : false;
+  }
 }

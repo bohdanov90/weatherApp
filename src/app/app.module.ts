@@ -7,6 +7,7 @@ import { RegisterModule } from './components/register/register.module';
 import { CommonModule } from '@angular/common';
 import { WeatherModule } from './components/weather/weather.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     WeatherModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
