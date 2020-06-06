@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { validateInput } from '../../validators/credsValidator';
 import { Router } from '@angular/router';
+import { LocalStorageService } from '../../services/local-storage.service';
+import { User } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-register',
@@ -10,10 +12,12 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  userValues: User;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private localStorageService: LocalStorageService,
   ) { }
 
   ngOnInit(): void {
@@ -44,12 +48,20 @@ export class RegisterComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.registerForm.value);
-    this.router.navigate(['/login']);
+    this.userValues = this.registerForm.value;
+    this.userValues.id = Date.now();
+
+    console.log(this.localStorageService.getLocalStorage());
+
+    if (this.localStorageService.getLocalStorage().some(el => el.email === this.registerForm.value.email)) {
+      console.log('user exists');
+    } else {
+      this.localStorageService.setLocalStorageItem(this.userValues);
+      this.router.navigate(['/login']);
+    }
   }
 
   onReturnToLoginClick() {
     this.router.navigate(['/login']);
   }
-
 }

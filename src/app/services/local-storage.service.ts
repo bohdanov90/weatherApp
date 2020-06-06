@@ -1,23 +1,20 @@
 import { Injectable } from '@angular/core';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
   public localStorageName = 'weatherApp';
-  public localStorageData: any = [];
 
-  constructor() {
-    this.localStorageData = this.getLocalStorage();
-  }
+  constructor() {}
 
-  getLocalStorage(): any {
+  getLocalStorage(): User[] {
     const value = localStorage.getItem(this.localStorageName);
     return !!value ? JSON.parse(value) : [];
   }
 
-  setLocalStorage(): any {
-    localStorage.setItem(this.localStorageName, JSON.stringify(this.localStorageData));
-    return this.localStorageData;
+  setLocalStorageItem(user: User): void {
+    localStorage.setItem(this.localStorageName, JSON.stringify([...this.getLocalStorage(), user]));
   }
 }
