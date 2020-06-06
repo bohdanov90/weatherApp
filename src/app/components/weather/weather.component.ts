@@ -3,6 +3,7 @@ import { NetworkService } from 'src/app/services/network.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-weather',
@@ -17,14 +18,18 @@ export class WeatherComponent implements OnInit {
   condition$: Observable<string>;
   temp$: Observable<string>;
   humidity$: Observable<string>;
+  login: string;
 
   constructor(
     private networkService: NetworkService,
     private router: Router,
     private authService: AuthService,
+    private localStorageService: LocalStorageService,
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.login = this.localStorageService.getLocalStorage('weatherAppCurrentUser')[0].login;
+  }
 
   onSubmit() {
     this.cityName$ = this.networkService.getCityName(this.currentCity);
