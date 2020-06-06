@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './components/login/login.module';
 import { RegisterModule } from './components/register/register.module';
 import { CommonModule } from '@angular/common';
+import { WeatherModule } from './components/weather/weather.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { CommonModule } from '@angular/common';
     AppRoutingModule,
     LoginModule,
     RegisterModule,
+    WeatherModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

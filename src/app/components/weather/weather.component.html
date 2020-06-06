@@ -1,0 +1,17 @@
+<div class="d-flex flex-column justify-content-center bg-light">
+  <input
+    type='text'
+    id='weatherPick'
+    placeholder="Please enter city name"
+    class='formControl w-50 align-self-center mt-5 mb-3'
+    [(ngModel)]="currentCity"
+    (keyUp.enter)='onSubmit()'>
+  <ng-container *ngIf="isDataReceived" class="d-flex flex-column justify-content-center" style="visibility: visible">
+    <div class="w-50 align-self-center mb-5 mt-3">
+      <p class="text-center font-weight-bold">Today in {{ cityName$ | async }}, {{ country$ | async }}</p>
+      <p class="font-weight-light">Weather condition: <span class="font-weight-normal">{{ condition$ | async }}</span></p>
+      <p class="font-weight-light">Temperature: <span class="font-weight-normal">{{ temp$ | async }}&deg;C</span></p>
+      <p class="font-weight-light">Humidity: <span class="font-weight-normal">{{ humidity$ | async }}%</span></p>
+    </div>
+  </ng-container>
+</div>
