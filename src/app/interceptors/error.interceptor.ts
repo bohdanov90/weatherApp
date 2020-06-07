@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError, EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
@@ -13,11 +13,12 @@ export class ErrorInterceptor implements HttpInterceptor {
     ) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      return next.handle(request).pipe(catchError(err => {
-        if (err.status === 404) {
-          this.alertService.error('Sorry, no weather available for this city. You have probably typed it wrong:(');
-        }
-        return throwError(err.error.message || err.statusText);
-      }));
+      return next.handle(request).pipe(
+        catchError((err: HttpErrorResponse) => {
+          this.alertService.error(err.error.message);
+          console.log('An error occurred:', err.error.message);
+          return EMPTY;
+        })
+      );
     }
 }

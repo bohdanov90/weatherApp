@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
         this.alertService.error('This user already exists');
       } else {
         this.localStorageService.setLocalStorageItem('weatherAppUsers', this.userValues);
-        this.alertService.success('Registration successful', true);
+        this.alertService.success('Registration successful');
         this.router.navigate(['/login']);
       }
     }
