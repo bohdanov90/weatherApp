@@ -12,13 +12,13 @@ import { LocalStorageNames } from '../../enums/local-storage-names.enum';
 })
 export class WeatherComponent implements OnInit {
   public currentCity = '';
+  public login = '';
   public isDataReceived = false;
   public cityName$: Observable<string>;
   public country$: Observable<string>;
   public condition$: Observable<string>;
   public temp$: Observable<string>;
   public humidity$: Observable<string>;
-  public login: string;
 
   constructor(
     private networkService: NetworkService,
@@ -31,19 +31,22 @@ export class WeatherComponent implements OnInit {
     this.login = this.localStorageService.getLocalStorage(LocalStorageNames.WEATHER_APP_CURRENT_USER)[0].login;
   }
 
-  public onSubmit() {
+  public onSubmit(): void {
+    this.defineValues();
+    this.currentCity = '';
+    this.isDataReceived = true;
+  }
+
+  public onLogOutClick(): void {
+    this.router.navigate(['/login']);
+    this.authService.logOut();
+  }
+
+  public defineValues() {
     this.cityName$ = this.networkService.getCityName(this.currentCity);
     this.country$ = this.networkService.getCountryName(this.currentCity);
     this.condition$ = this.networkService.getCondition(this.currentCity);
     this.temp$ = this.networkService.getTemp(this.currentCity);
     this.humidity$ = this.networkService.getHumidity(this.currentCity);
-    this.currentCity = '';
-    this.isDataReceived = true;
   }
-
-  public onLogOutClick() {
-    this.router.navigate(['/login']);
-    this.authService.logOut();
-  }
-
 }

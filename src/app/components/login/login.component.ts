@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
-  public initForm() {
+  public initForm(): void {
     this.loginForm = this.formBuilder.group({
       login: ['', {
         validators: [
@@ -51,13 +51,12 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public submitForm() {
-    this.userValues = this.loginForm.value;
-    this.userValues.id = Date.now();
+  public submitForm(): void {
+    this.defineUserValues();
 
     if (this.loginForm.valid) {
-      if (this.localStorageService.getLocalStorage(LocalStorageNames.WEATHER_APP_USERS).some(el => {
-        return (el.login === this.loginForm.value.login) && (el.password === this.loginForm.value.password);
+      if (this.localStorageService.getLocalStorage(LocalStorageNames.WEATHER_APP_USERS).some((data: User) => {
+        return (data.login === this.loginForm.value.login) && (data.password === this.loginForm.value.password);
       })) {
         this.authService.logIn(this.userValues);
         this.router.navigate(['/weather']);
@@ -67,8 +66,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  public onSignUpClick() {
+  public onSignUpClick(): void {
     this.router.navigate(['/register']);
   }
 
+  public defineUserValues(): void {
+    this.userValues = this.loginForm.value;
+    this.userValues.id = Date.now();
+  }
 }

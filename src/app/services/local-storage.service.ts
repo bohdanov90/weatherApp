@@ -14,7 +14,7 @@ export class LocalStorageService {
     localStorage.setItem(localStorageName, JSON.stringify([...this.getLocalStorage(localStorageName), user]));
   }
 
-  public removeLocalStorageItem(localStorageName: string) {
+  public removeLocalStorageItem(localStorageName: string): void {
     localStorage.removeItem(localStorageName);
   }
 }

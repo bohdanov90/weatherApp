@@ -5,7 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AlertService {
-  private alert$ = new BehaviorSubject<any>(null);
+  private alert$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
 
   constructor() {}
 
@@ -23,7 +23,7 @@ export class AlertService {
     }, 5000);
   }
 
-  public getMessage(): Observable<any> {
+  public getMessage(): Observable<string> {
     return this.alert$.asObservable();
   }
 }

@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     this.initForm();
   }
 
-  public initForm() {
+  public initForm(): void {
     this.registerForm = this.formBuilder.group({
       name: ['', {
         validators: [
@@ -65,9 +65,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  public submitForm() {
-    this.userValues = this.registerForm.value;
-    this.userValues.id = Date.now();
+  public submitForm(): void {
+    this.defineUserValues();
 
     if (this.registerForm.valid) {
       if (this.localStorageService.getLocalStorage(LocalStorageNames.WEATHER_APP_USERS)
@@ -81,7 +80,12 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  public onReturnToLoginClick() {
+  public onReturnToLoginClick(): void {
     this.router.navigate(['/login']);
+  }
+
+  public defineUserValues(): void {
+    this.userValues = this.registerForm.value;
+    this.userValues.id = Date.now();
   }
 }

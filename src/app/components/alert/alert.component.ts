@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { AlertService } from 'src/app/services/alert.service';
 import { takeUntil } from 'rxjs/operators';
 
@@ -9,19 +9,19 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class AlertComponent implements OnInit, OnDestroy {
   public alertMessage: any;
-  private onDestroy$ = new Subject();
+  private onDestroy$: Subject<void> = new Subject();
 
   constructor(private alertService: AlertService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.alertService.getMessage()
     .pipe(
       takeUntil(this.onDestroy$),
     )
-    .subscribe(message => this.alertMessage = message);
+    .subscribe((message: string) => this.alertMessage = message);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
   }
