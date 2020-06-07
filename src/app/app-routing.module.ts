@@ -5,12 +5,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { GoToWeatherGuard } from './guards/goToWeather.guard';
 import { LeaveWeatherGuard } from './guards/leaveWeather.guard';
+import { Routing } from './enums/routing.enum';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent, canActivate: [LeaveWeatherGuard]},
-  {path: 'register', component: RegisterComponent, canActivate: [LeaveWeatherGuard]},
-  {path: 'weather', component: WeatherComponent, canActivate: [GoToWeatherGuard]},
-  {path: '**', redirectTo: 'weather'},
+  {path: Routing.LOGIN, component: LoginComponent, canActivate: [LeaveWeatherGuard]},
+  {path: Routing.REGISTER, component: RegisterComponent, canActivate: [LeaveWeatherGuard]},
+  {path: Routing.WEATHER, component: WeatherComponent, canActivate: [GoToWeatherGuard]},
+  {path: '**', redirectTo: Routing.WEATHER},
 ];
 
 @NgModule({

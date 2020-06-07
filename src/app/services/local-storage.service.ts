@@ -5,10 +5,6 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root'
 })
 export class LocalStorageService {
-  public localStorageName = 'weatherAppUsers';
-
-  constructor() {}
-
   public getLocalStorage(localStorageName: string): User[] {
     const value = localStorage.getItem(localStorageName);
     return !!value ? JSON.parse(value) : [];

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { LocalStorageNames } from '../../enums/local-storage-names.enum';
 
 @Component({
   selector: 'app-weather',
@@ -27,7 +28,7 @@ export class WeatherComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.login = this.localStorageService.getLocalStorage('weatherAppCurrentUser')[0].login;
+    this.login = this.localStorageService.getLocalStorage(LocalStorageNames.WEATHER_APP_CURRENT_USER)[0].login;
   }
 
   public onSubmit() {

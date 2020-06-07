@@ -6,6 +6,7 @@ import { LocalStorageService } from '../../services/local-storage.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { AuthService } from '../../services/auth.service';
 import { AlertService } from '../../services/alert.service';
+import { LocalStorageNames } from 'src/app/enums/local-storage-names.enum';
 
 @Component({
   selector: 'app-login',
@@ -55,7 +56,7 @@ export class LoginComponent implements OnInit {
     this.userValues.id = Date.now();
 
     if (this.loginForm.valid) {
-      if (this.localStorageService.getLocalStorage('weatherAppUsers').some(el => {
+      if (this.localStorageService.getLocalStorage(LocalStorageNames.WEATHER_APP_USERS).some(el => {
         return (el.login === this.loginForm.value.login) && (el.password === this.loginForm.value.password);
       })) {
         this.authService.logIn(this.userValues);

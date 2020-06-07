@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { AlertService } from '../../services/alert.service';
+import { LocalStorageNames } from 'src/app/enums/local-storage-names.enum';
 
 @Component({
   selector: 'app-register',
@@ -69,13 +70,14 @@ export class RegisterComponent implements OnInit {
     this.userValues.id = Date.now();
 
     if (this.registerForm.valid) {
-      if (this.localStorageService.getLocalStorage('weatherAppUsers').some(el => el.email === this.registerForm.value.email)) {
-        this.alertService.error('This user already exists');
-      } else {
-        this.localStorageService.setLocalStorageItem('weatherAppUsers', this.userValues);
-        this.alertService.success('Registration successful');
-        this.router.navigate(['/login']);
-      }
+      if (this.localStorageService.getLocalStorage(LocalStorageNames.WEATHER_APP_USERS)
+        .some(el => el.email === this.registerForm.value.email)) {
+          this.alertService.error('This user already exists');
+        } else {
+          this.localStorageService.setLocalStorageItem(LocalStorageNames.WEATHER_APP_USERS, this.userValues);
+          this.alertService.success('Registration successful');
+          this.router.navigate(['/login']);
+        }
     }
   }
 

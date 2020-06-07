@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { NetworkQueries } from '../enums/network-queries.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NetworkService {
   private apiKey = '4b02c2bff72b44cd616e770328f27763';
-  private weather = 'weather';
-  private main = 'main';
-  private name = 'name';
-  private sys = 'sys';
+  private weather = NetworkQueries.WEATHER;
+  private main = NetworkQueries.MAIN;
+  private name = NetworkQueries.NAME;
+  private sys = NetworkQueries.SYS;
 
   constructor(private http: HttpClient) { }
 
