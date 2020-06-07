@@ -25,19 +25,29 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm() {
     this.loginForm = this.formBuilder.group({
-      login: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(100),
-        validateInput(/[^a-zA-Z0-9]/gi),
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(100),
-        validateInput(/[^a-zA-Z0-9_]/gi),
-      ]],
+      login: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100),
+          validateInput(/[^a-zA-Z0-9]/gi),
+        ],
+        updateOn: 'blur'
+      }],
+      password: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100),
+          validateInput(/[^a-zA-Z0-9_]/gi),
+        ],
+        updateOn: 'blur'
+      }],
     });
   }
 
@@ -45,13 +55,15 @@ export class LoginComponent implements OnInit {
     this.userValues = this.loginForm.value;
     this.userValues.id = Date.now();
 
-    if (this.localStorageService.getLocalStorage('weatherAppUsers').some(el => {
-      return (el.login === this.loginForm.value.login) && (el.password === this.loginForm.value.password);
-    })) {
-      this.authService.logIn(this.userValues);
-      this.router.navigate(['/weather']);
-    } else {
-      this.alertService.error('Please verify your login and/or password');
+    if (this.loginForm.valid) {
+      if (this.localStorageService.getLocalStorage('weatherAppUsers').some(el => {
+        return (el.login === this.loginForm.value.login) && (el.password === this.loginForm.value.password);
+      })) {
+        this.authService.logIn(this.userValues);
+        this.router.navigate(['/weather']);
+      } else {
+        this.alertService.error('Please verify your login and/or password');
+      }
     }
   }
 

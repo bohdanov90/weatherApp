@@ -23,29 +23,45 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  initForm() {
     this.registerForm = this.formBuilder.group({
-      name: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(100),
-        validateInput(/[^a-zA-Z ]/gi),
-      ]],
-      email: ['', [
-        Validators.required,
-        Validators.email,
-      ]],
-      login: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(100),
-        validateInput(/[^a-zA-Z0-9]/gi),
-      ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(6),
-        Validators.maxLength(100),
-        validateInput(/[^a-zA-Z0-9_]/gi),
-      ]],
+      name: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100),
+          validateInput(/[^a-zA-Z ]/gi),
+        ],
+        updateOn: 'blur'
+      }],
+      email: ['', {
+        validators: [
+          Validators.required,
+          Validators.email,
+        ],
+        updateOn: 'blur'
+      }],
+      login: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100),
+          validateInput(/[^a-zA-Z0-9]/gi),
+        ],
+        updateOn: 'blur'
+      }],
+      password: ['', {
+        validators: [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100),
+          validateInput(/[^a-zA-Z0-9_]/gi),
+        ],
+        updateOn: 'blur'
+      }],
     });
   }
 
@@ -53,12 +69,14 @@ export class RegisterComponent implements OnInit {
     this.userValues = this.registerForm.value;
     this.userValues.id = Date.now();
 
-    if (this.localStorageService.getLocalStorage('weatherAppUsers').some(el => el.email === this.registerForm.value.email)) {
-      this.alertService.error('This user already exists');
-    } else {
-      this.localStorageService.setLocalStorageItem('weatherAppUsers', this.userValues);
-      this.alertService.success('Registration successful', true);
-      this.router.navigate(['/login']);
+    if (this.registerForm.valid) {
+      if (this.localStorageService.getLocalStorage('weatherAppUsers').some(el => el.email === this.registerForm.value.email)) {
+        this.alertService.error('This user already exists');
+      } else {
+        this.localStorageService.setLocalStorageItem('weatherAppUsers', this.userValues);
+        this.alertService.success('Registration successful', true);
+        this.router.navigate(['/login']);
+      }
     }
   }
 
