@@ -30,9 +30,9 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(100),
         validateInput(/[^a-zA-Z ]/gi),
       ]],
-      email: ['', [ // double check this regex
+      email: ['', [
         Validators.required,
-        validateInput(/^\S+@\S+$/),
+        Validators.email,
       ]],
       login: ['', [
         Validators.required,
