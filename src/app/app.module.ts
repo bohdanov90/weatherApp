@@ -6,10 +6,11 @@ import { LoginModule } from './components/login/login.module';
 import { RegisterModule } from './components/register/register.module';
 import { CommonModule } from '@angular/common';
 import { WeatherModule } from './components/weather/weather.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GoToWeatherGuard } from './guards/goToWeather.guard';
 import { LeaveWeatherGuard } from './guards/leaveWeather.guard';
 import { AlertModule } from './components/alert/alert.module';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AlertModule } from './components/alert/alert.module';
   providers: [
     GoToWeatherGuard,
     LeaveWeatherGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
