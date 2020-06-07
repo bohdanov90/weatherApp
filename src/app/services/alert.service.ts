@@ -9,21 +9,21 @@ export class AlertService {
 
   constructor() {}
 
-  success(message: string): void {
+  public success(message: string): void {
     this.alert$.next({ type: 'success', text: message });
     setTimeout(() => {
       this.alert$.next(null);
     }, 3500);
   }
 
-  error(message: string): void {
+  public error(message: string): void {
     this.alert$.next({ type: 'error', text: message });
     setTimeout(() => {
       this.alert$.next(null);
     }, 5000);
   }
 
-  getMessage(): Observable<any> {
+  public getMessage(): Observable<any> {
     return this.alert$.asObservable();
   }
 }

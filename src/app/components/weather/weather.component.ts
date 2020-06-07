@@ -10,14 +10,14 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   templateUrl: './weather.component.html',
 })
 export class WeatherComponent implements OnInit {
-  currentCity = '';
-  isDataReceived = false;
-  cityName$: Observable<string>;
-  country$: Observable<string>;
-  condition$: Observable<string>;
-  temp$: Observable<string>;
-  humidity$: Observable<string>;
-  login: string;
+  public currentCity = '';
+  public isDataReceived = false;
+  public cityName$: Observable<string>;
+  public country$: Observable<string>;
+  public condition$: Observable<string>;
+  public temp$: Observable<string>;
+  public humidity$: Observable<string>;
+  public login: string;
 
   constructor(
     private networkService: NetworkService,
@@ -30,7 +30,7 @@ export class WeatherComponent implements OnInit {
     this.login = this.localStorageService.getLocalStorage('weatherAppCurrentUser')[0].login;
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.cityName$ = this.networkService.getCityName(this.currentCity);
     this.country$ = this.networkService.getCountryName(this.currentCity);
     this.condition$ = this.networkService.getCondition(this.currentCity);
@@ -40,7 +40,7 @@ export class WeatherComponent implements OnInit {
     this.isDataReceived = true;
   }
 
-  onLogOutClick() {
+  public onLogOutClick() {
     this.router.navigate(['/login']);
     this.authService.logOut();
   }

@@ -6,20 +6,19 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(
     private localStorageService: LocalStorageService,
   ) { }
 
-  logIn(user: User): void {
+  public logIn(user: User): void {
     this.localStorageService.setLocalStorageItem('weatherAppCurrentUser', user);
   }
 
-  logOut(): void {
+  public logOut(): void {
     this.localStorageService.removeLocalStorageItem('weatherAppCurrentUser');
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return this.localStorageService.getLocalStorage('weatherAppCurrentUser').length > 0 ? true : false;
   }
 }

@@ -12,8 +12,8 @@ import { AlertService } from '../../services/alert.service';
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  userValues: User;
+  public loginForm: FormGroup;
+  public userValues: User;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.initForm();
   }
 
-  initForm() {
+  public initForm() {
     this.loginForm = this.formBuilder.group({
       login: ['', {
         validators: [
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  submitForm() {
+  public submitForm() {
     this.userValues = this.loginForm.value;
     this.userValues.id = Date.now();
 
@@ -66,7 +66,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSignUpClick() {
+  public onSignUpClick() {
     this.router.navigate(['/register']);
   }
 

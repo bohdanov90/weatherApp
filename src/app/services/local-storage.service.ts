@@ -9,16 +9,16 @@ export class LocalStorageService {
 
   constructor() {}
 
-  getLocalStorage(localStorageName: string): User[] {
+  public getLocalStorage(localStorageName: string): User[] {
     const value = localStorage.getItem(localStorageName);
     return !!value ? JSON.parse(value) : [];
   }
 
-  setLocalStorageItem(localStorageName: string, user: User): void {
+  public setLocalStorageItem(localStorageName: string, user: User): void {
     localStorage.setItem(localStorageName, JSON.stringify([...this.getLocalStorage(localStorageName), user]));
   }
 
-  removeLocalStorageItem(localStorageName: string) {
+  public removeLocalStorageItem(localStorageName: string) {
     localStorage.removeItem(localStorageName);
   }
 }
