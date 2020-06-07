@@ -14,7 +14,6 @@ export class GoToWeatherGuard implements CanActivate {
       return true;
     }
     this.router.navigate(['/login']);
-    console.log('Please log in first');
     return false;
   }
 }
