@@ -5,19 +5,19 @@ import { Observable, BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AlertService {
-  private subject = new BehaviorSubject<any>(null);
+  private alert$ = new BehaviorSubject<any>(null);
 
   constructor() {}
 
   success(message: string): void {
-    this.subject.next({ type: 'success', text: message });
+    this.alert$.next({ type: 'success', text: message });
   }
 
   error(message: string): void {
-    this.subject.next({ type: 'error', text: message });
+    this.alert$.next({ type: 'error', text: message });
   }
 
   getMessage(): Observable<any> {
-    return this.subject.asObservable();
+    return this.alert$.asObservable();
   }
 }
