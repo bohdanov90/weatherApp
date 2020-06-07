@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from '../../services/local-storage.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { AuthService } from '../../services/auth.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private localStorageService: LocalStorageService,
     private authService: AuthService,
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
       this.authService.logIn(this.userValues);
       this.router.navigate(['/weather']);
     } else {
-      console.log('ERROR. Verify your login or password');
+      this.alertService.error('Please verify your login and/or password');
     }
   }
 

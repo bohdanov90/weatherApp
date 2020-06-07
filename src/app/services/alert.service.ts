@@ -1,19 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { Router, NavigationStart } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertService {
   private alert$ = new BehaviorSubject<any>(null);
+  private isKeepDisplayingAlert = false;
 
-  constructor() {}
+  constructor(public router: Router) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.isKeepDisplayingAlert ? this.isKeepDisplayingAlert = false : this.alert$.next(null);
+      }
+    });
+  }
 
-  success(message: string): void {
+  success(message: string, isKeepDisplayingAlert = false): void {
+    this.isKeepDisplayingAlert = isKeepDisplayingAlert;
     this.alert$.next({ type: 'success', text: message });
   }
 
-  error(message: string): void {
+  error(message: string, isKeepDisplayingAlert = false): void {
+    this.isKeepDisplayingAlert = isKeepDisplayingAlert;
     this.alert$.next({ type: 'error', text: message });
   }
 

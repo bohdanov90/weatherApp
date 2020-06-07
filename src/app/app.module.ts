@@ -9,6 +9,7 @@ import { WeatherModule } from './components/weather/weather.module';
 import { HttpClientModule } from '@angular/common/http';
 import { GoToWeatherGuard } from './guards/goToWeather.guard';
 import { LeaveWeatherGuard } from './guards/leaveWeather.guard';
+import { AlertModule } from './components/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LeaveWeatherGuard } from './guards/leaveWeather.guard';
     LoginModule,
     RegisterModule,
     WeatherModule,
-    HttpClientModule
+    HttpClientModule,
+    AlertModule,
   ],
   providers: [
     GoToWeatherGuard,
