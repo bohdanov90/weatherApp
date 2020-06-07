@@ -7,7 +7,8 @@ import { RegisterModule } from './components/register/register.module';
 import { CommonModule } from '@angular/common';
 import { WeatherModule } from './components/weather/weather.module';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthGuard } from './guards/auth.guard';
+import { GoToWeatherGuard } from './guards/goToWeather.guard';
+import { LeaveWeatherGuard } from './guards/leaveWeather.guard';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AuthGuard } from './guards/auth.guard';
     HttpClientModule
   ],
   providers: [
-    AuthGuard,
+    GoToWeatherGuard,
+    LeaveWeatherGuard,
   ],
   bootstrap: [AppComponent]
 })

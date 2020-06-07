@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WeatherComponent } from './components/weather/weather.component';
-import { AuthGuard } from './guards/auth.guard';
+import { GoToWeatherGuard } from './guards/goToWeather.guard';
+import { LeaveWeatherGuard } from './guards/leaveWeather.guard';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'weather', component: WeatherComponent, canActivate: [AuthGuard]},
+  {path: 'login', component: LoginComponent, canActivate: [LeaveWeatherGuard]},
+  {path: 'register', component: RegisterComponent, canActivate: [LeaveWeatherGuard]},
+  {path: 'weather', component: WeatherComponent, canActivate: [GoToWeatherGuard]},
   {path: '**', redirectTo: 'weather'},
 ];
 
