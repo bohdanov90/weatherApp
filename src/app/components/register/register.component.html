@@ -12,7 +12,7 @@
         class='formControl w-50'
         required>
       <div>
-        <small class="text-muted">Only letters are allowed</small>
+        <small class="text-muted">Only latin letters are allowed</small>
       </div>
       <div
         *ngIf="registerForm.controls.name.invalid && (registerForm.controls.name.dirty || registerForm.controls.name.touched)"
@@ -27,7 +27,7 @@
           Name must be up to 100 characters long
         </div>
         <div *ngIf="registerForm.controls.name.errors.credsValidator">
-          Please use only letters
+          Please use only latin letters
         </div>
       </div>
     </div>
@@ -61,7 +61,7 @@
         class='formControl w-50'
         required>
       <div>
-        <small class="text-muted">Only letters and digits are allowed</small>
+        <small class="text-muted">Only latin letters and digits are allowed</small>
       </div>
       <div
         *ngIf="registerForm.controls.login.invalid && (registerForm.controls.login.dirty || registerForm.controls.login.touched)"
@@ -76,7 +76,7 @@
           Login must be up to 100 characters long
         </div>
         <div *ngIf="registerForm.controls.login.errors.credsValidator">
-          Please use only letters and digits
+          Please use only latin letters and digits
         </div>
       </div>
     </div>
@@ -90,7 +90,7 @@
         class='formControl w-50'
         required>
       <div>
-        <small class="text-muted">Only letters, digits, and underscores are allowed</small>
+        <small class="text-muted">Only latin letters, digits, and underscores are allowed</small>
       </div>
       <div
         *ngIf="registerForm.controls.password.invalid && (registerForm.controls.password.dirty || registerForm.controls.password.touched)"
@@ -105,7 +105,7 @@
           Password must be up to 100 characters long
         </div>
         <div *ngIf="registerForm.controls.password.errors.credsValidator">
-          Please use only letters, digits and underscores
+          Please use only latin letters, digits and underscores
         </div>
       </div>
     </div>
