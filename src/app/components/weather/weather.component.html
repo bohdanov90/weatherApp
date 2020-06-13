@@ -18,7 +18,7 @@
       placeholder="Please enter city name"
       class='form-control w-50 align-self-center mt-3 mb-3 mr-3'>
     <button
-      (click)='onCheckWeatherClick()'
+      (click)='onSubmit()'
       class="btn btn-success btn-sm mt-3 mb-3">Check Weather</button>
   </div>
   <ng-container *ngIf="isDataReceived" class="d-flex flex-column justify-content-center" style="visibility: visible">

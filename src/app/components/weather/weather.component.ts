@@ -32,13 +32,11 @@ export class WeatherComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    this.defineValues();
-    this.currentCity = '';
-    this.isDataReceived = true;
-  }
-
-  public onCheckWeatherClick() {
-    this.onSubmit();
+    if (this.currentCity.trim()) {
+      this.defineValues();
+      this.currentCity = '';
+      this.isDataReceived = true;
+    }
   }
 
   public onLogOutClick(): void {
