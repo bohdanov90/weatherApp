@@ -37,6 +37,10 @@ export class WeatherComponent implements OnInit {
     this.isDataReceived = true;
   }
 
+  public onCheckWeatherClick() {
+    this.onSubmit();
+  }
+
   public onLogOutClick(): void {
     this.router.navigate(['/login']);
     this.authService.logOut();
